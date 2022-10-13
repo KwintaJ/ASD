@@ -11,7 +11,7 @@
 #==============================================================================
 # Flagi, kompilator, rozszerzenia i inne:
 
-CFLAGS = -O2 -Wall -pedantic -std=c++11
+CFLAGS = -O3 -Wall -pedantic -std=c++11
 LDFLAGS = -Wall -pedantic -std=c++11 -s
 LDLIBS = -lm
 CO = g++

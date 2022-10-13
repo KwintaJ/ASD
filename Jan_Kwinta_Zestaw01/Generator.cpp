@@ -14,12 +14,42 @@
 
 #include <iostream>
 #include <string>
+#include <stdlib.h>
+#include <time.h> 
 
-using namespace std;
-
-int main(int argc, char **argv) //jako argument z lini komend wczytuje ile operacji ma wygenerowac
+int main(int argc, char **argv)
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL); cout.tie(NULL);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL); std::cout.tie(NULL);
 
+    /* inicjalizacja generatora liczb pseudolosowych */
+    time_t seed;
+    srand(time(&seed));
+
+    /* wypisanie liczby operacji podanej jako argument wywolania programu */
+    int numOfOperations = atoi(argv[1]);
+    std::cout << numOfOperations << "\n";
+
+    while(numOfOperations--)
+    {
+        int operationType = rand() % 3;
+        switch(operationType)
+        {
+            case 0:
+                {
+                    std::cout << "A ";
+                    int element = rand() % 1000001;
+                    std::cout << element << "\n";
+                }
+                break;
+
+            case 1:
+                std::cout << "D\n";
+                break;
+
+            case 2:
+                std::cout << "S\n";
+                break;
+        }
+    }
 }
