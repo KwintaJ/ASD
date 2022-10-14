@@ -17,16 +17,18 @@
 #include <stdexcept>
 #include <iostream>
 
-template<typename T>
+template<class T, int N>
 class Stack {
 public:
-    Stack(int capacity) // Konstruktor. Argumentem jest rozmiar tablicy.
+    Stack() // Konstruktor
     {
         currentSize = 0;
-        maxSize = capacity;
-        array = new T[capacity];
+        maxSize = N;
+        array = new T[N];
     }
-    void push(T &x) // Wstawia element na stos
+    
+    template<class U>
+    void push(U &&x) // Wstawia element na stos
     {
         if(currentSize == maxSize)
             throw std::out_of_range ("overflow");
@@ -41,6 +43,12 @@ public:
 
         currentSize--;
         return array[currentSize];
+    }
+    T& top() // Zwraca referencje do najmlodszego elementu
+    {
+        if(currentSize == 0)
+            throw std::out_of_range ("underflow");
+        return array[currentSize - 1];
     }
     int size() // Zwraca liczbę elementow na stosie
     {

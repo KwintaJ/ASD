@@ -22,17 +22,18 @@ int main(int argc, char **argv)
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL); std::cout.tie(NULL);
 
-    Stack<int> Stos(MAX_STACK_CAPACITY);
+    Stack<int, MAX_STACK_CAPACITY> Stos; // stworzenie stosu intow
 
-    int n;
+    int n; // liczba instrukcji podanych na wejsciu
     std::cin >> n;
     while(n--)
     {
-        char instruction;
+        char instruction; // instrukcja podana na wejsciu
         std::cin >> instruction;
         switch(instruction)
         {
             case 'A':
+                /* wstawienie elementu do stosu */
                 int element;
                 std::cin >> element;
                 try
@@ -46,6 +47,7 @@ int main(int argc, char **argv)
                 break;
 
             case 'D':
+                /* wyciagniecie elementu ze stosu */
                 try
                 {
                     std::cout << Stos.pop() << "\n";
@@ -57,6 +59,7 @@ int main(int argc, char **argv)
                 break;
 
             case 'S':
+                /* wypisanie aktualnej liczby elementow na stosie */
                 std::cout << Stos.size() << "\n";
                 break;
         }

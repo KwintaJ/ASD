@@ -19,7 +19,7 @@
 
 /* Struktura przechowujaca element na stosie i wskaznik 
    do elementu ponizej */
-template<typename T>
+template<class T>
 struct stackNode 
 {
     stackNode(const T &x): data{x}, next{nullptr}
@@ -30,17 +30,18 @@ struct stackNode
     stackNode<T> *next;
 };
 
-template<typename T>
+template<class T, int N>
 class Stack
 {
 public:
-    Stack(int capacity) // Konstruktor. Argumentem jest rozmiar tablicy.
+    Stack() // Konstruktor
     {
         currentSize = 0;
-        maxSize = capacity;
+        maxSize = N;
         topNode = nullptr;
     }
-    void push(T &x) // Wstawia element na stos
+    template<class U>
+    void push(U &&x) // Wstawia element na stos
     {
         if(currentSize == maxSize)
             throw std::out_of_range ("overflow");
@@ -60,6 +61,12 @@ public:
         topNode = topNode->next;
         currentSize--;
         return output->data;   
+    }
+    T& top() // Zwraca referencje do najmlodszego elementu
+    {
+        if(currentSize == 0)
+            throw std::out_of_range ("underflow");
+        return topNode->data;
     }
     int size() // Zwraca liczbe elementow na stosie
     {

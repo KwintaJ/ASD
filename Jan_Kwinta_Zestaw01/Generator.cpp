@@ -32,13 +32,16 @@ int main(int argc, char **argv)
 
     while(numOfOperations--)
     {
-        int operationType = rand() % 3;
+        int operationType = rand() % 3; // wylosowanie typu operacji:
+                                        // 0 - push
+                                        // 1 - pop
+                                        // 2 - size
         switch(operationType)
         {
             case 0:
                 {
                     std::cout << "A ";
-                    int element = rand() % 1000001;
+                    int element = rand() % 1000001; // wylosowanie elementu do wstawienia na stos
                     std::cout << element << "\n";
                 }
                 break;
