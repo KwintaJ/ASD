@@ -1,0 +1,105 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 15.10.2022 #
+#  Zestaw02: Kolejka                                                          #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Jan_Kwinta_Zadanie01 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji programow
+- Queue.cpp             |   Pliki zrodlowe programow
+- Radix.cpp             |   |
+- Generator.cpp         |   |
+- ArrayQueue.hpp        |   Pliki naglowkowe
+- LinkedQueue.hpp       |   |
+_______________________________________________________________________________
+
+
+
+
+* Odpowiedzi na pytania:
+_______________________________________________________________________________
+
+1. Opisz trzy sposoby obsługi cykliczności bufora.
+
+2. Omów przykłady zastosowania kolejki?
+    W rozwiazaniach informatycznych kolejke stosuje sie glownie w sytuacjach
+    zwiazanych z obsluga zdarzen. Przykladowo w systemach komputerowych 
+    planista procesora przydziela zasoby dzialajacym procesom i watkom, 
+    ktore czekaja w kolejce. Spotykana takze w zastosowaniach sieciowych
+    sluzy np do przydzielania dostepu do serwera klientom czekajacym w 
+    kolejce. Kolejke lub kolejke priorytetowa stosuje sie tez w roznego 
+    rodzaju algorytmach m. in. w przeszukiwaniu grafu wszerz (BFS), 
+    algorytmie Prima, algorytmie Hopcrofta-Karpa, itp.
+
+
+3. Co oznaczają akronimy LIFO i FIFO?
+    
+    LIFO - Last In, First Out (ostatnie co weszlo pierwsze wyjdzie).
+    Mowi sie w ten sposob o abstrakcyjnej strukturze danych realizujacej
+    metode tzw. najpozniejszej dostawy. Metoda ta oparta jest na zalozeniu, 
+    ze "wyjac" (usunac, pobrac, uzyskac dostep) ze struktury mozemy to co
+    zostalo do tej struktury dodane jako ostatnie (jest w strukturze
+    najkrotszy czas w porownaniu do innych elementow). Przykladem struktury
+    LIFO jest stos.
+
+    FIFO - First In, First Out (pierwsze co weszlo pierwsze wyjdzie).
+    Mowi sie w ten sposob o abstrakcyjnej strukturze danych realizujacej
+    metode kolejkowa. Metoda ta oparta jest na zalozeniu,  ze "wyjac" (usunac,
+    pobrac, uzyskac dostep) ze struktury mozemy to co zostalo w tej 
+    strukturze umieszczone jako pierwsze (jest w strukturze
+    najdluzszy czas w porownaniu do innych elementow). Przykladem struktury
+    LIFO jest kolejka.
+ 
+_______________________________________________________________________________
+
+
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Zadania od 1 do 4=--
+
+ArrayQueue.hpp
+    Plik naglowkowy z tablicowa implementacja kolejki w oparciu o bufor cykliczny. 
+
+
+LinkedQueue.hpp
+    Plik naglowkowy z wskaznikowa implementacja kolejki.
+
+
+Queue.x
+    Program operujacy na zaimplementowanej w cwiczeniach 1 i 2 kolejce. 
+    Program czyta n instrukcji ze standardowego wejscia i obsluguje je
+    wedlug ponizszego formatu:
+
+        A x       -      wloz do kolejki liczbe x
+        D         -      wyjmij element z kolejki i wypisz jego wartosc
+                         jezeli kolejka jest pusta wypisz "EMPTY"
+        S         -      wypisz liczbe elementow w kolejce
+
+    Obslugujac powyzsze dane zakladamy, ze:
+            ->  n <= 10^6
+            ->  0 <= x <= 10^6
+
+
+Generator.x
+    Program generujacy losowy zestaw danych dla programu "Queue.x" wedlug
+    formatu powyzej. Liczba n (liczba instrukcji) jest przekazywana 
+    do programu "Generator.x" przez argument jego wywolania. 
+
+
+Radix.x
+    Program implementujacy algorytm sortowania pozycyjnego. Uzywa w tym celu
+    dziesieciu obiektow klasy Queue z zadan 1 i 2. Wczytuje z standardowego
+    wejscia zestaw liczb i zapisuje je do std::vector<int>. Po wywolaniu
+    funkcji radix(std::vector<int> &v) sortuje wektor w kolejnosci rosnacej
+    a nastepnie wypisuje jego zawartosc na standardowe wyjscie.
+
+    Obslugujac powyzsze dane zakladamy, ze:
+            ->  liczby na wejsciu sa nieujemne i mniejsze niz 10^9
+
+_______________________________________________________________________________
