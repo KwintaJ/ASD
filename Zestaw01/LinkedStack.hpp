@@ -46,7 +46,7 @@ public:
         if(currentSize == maxSize)
             throw std::out_of_range ("overflow");
 
-        stackNode<T> *input = new stackNode<T>(x);
+        stackNode<T> *input = new stackNode<T>(std::forward<U>(x));
         input->next = topNode;
         topNode = input;
 

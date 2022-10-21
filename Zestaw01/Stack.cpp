@@ -10,7 +10,7 @@
 //                                            //
 //############################################//
 
-#include "ArrayStack.hpp"
+#include "LinkedStack.hpp"
 
 #include <iostream>
 #include <string>

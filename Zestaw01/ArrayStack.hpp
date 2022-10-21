@@ -33,7 +33,7 @@ public:
         if(currentSize == maxSize)
             throw std::out_of_range ("overflow");
 
-        array[currentSize] = x;
+        array[currentSize] = std::forward<U>(x);
         currentSize++;
     }
     T pop() // Usuwa element ze stosu i zwraca jego wartosc
