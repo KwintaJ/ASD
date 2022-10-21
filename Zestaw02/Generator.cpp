@@ -25,7 +25,9 @@ int main(int argc, char **argv)
     srand(time(&seed));
 
     /* wypisanie liczby operacji podanej jako argument wywolania programu */
-    int numOfOperations = atoi(argv[1]);
+    int numOfOperations = 0;
+    if(argc > 1)
+        numOfOperations = atoi(argv[1]);
     std::cout << numOfOperations << "\n";
 
     while(numOfOperations--)

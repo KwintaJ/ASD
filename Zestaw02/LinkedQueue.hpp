@@ -47,7 +47,7 @@ public:
         if(currentSize == maxSize)
             throw std::out_of_range ("overflow");
 
-        queueNode<T> *newNode = new queueNode<T>(x);
+        queueNode<T> *newNode = new queueNode<T>(std::forward<U>(x));
         if(currentSize == 0)
         {
             frontNode = newNode;
@@ -66,7 +66,7 @@ public:
         if(currentSize == maxSize)
             throw std::out_of_range ("overflow");
 
-        push(x);
+        push(std::forward<U>(x));
     }
     T pop() // Usuwa element z kolejki i zwraca jego wartosc
     {

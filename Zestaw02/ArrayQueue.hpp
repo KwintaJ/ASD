@@ -36,7 +36,7 @@ public:
             throw std::out_of_range ("overflow");
 
         currentSize++;
-        array[endOfQueue] = x;
+        array[endOfQueue] = std::forward<U>(x);
         endOfQueue = (endOfQueue + 1) % maxSize;
     }
     template<class U>
@@ -45,7 +45,7 @@ public:
         if(currentSize == maxSize)
             throw std::out_of_range ("overflow");
         
-        push(x);
+        push(std::forward<U>(x));
     }
     T pop() // Usuwa element z kolejki i zwraca jego wartosc
     {

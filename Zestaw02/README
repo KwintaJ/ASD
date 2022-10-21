@@ -23,6 +23,13 @@ _______________________________________________________________________________
 _______________________________________________________________________________
 
 1. Opisz trzy sposoby obsługi cykliczności bufora.
+    1. Dwa indeksy: zerowanie indeksow, gdy wychodza poza rozmiar bufora.
+    2. Dwa indeksy: zwiekszanie indeksow i uzywanie operacji modulo 
+       (indeks % rozmiar_bufora)
+    3. Jeden indeks i dlugosc: zapamietujemy jeden indeks oraz liczbe elementow
+       aktualnie w buforze. Jezeli chcemy "odzyskac" wartosc drugiego indeksu
+       (tego, ktorego nie zapamietujemy) odpowiednio dodajemy albo odejmujemy
+       dlugosc od tego indeksu, ktory mamy.
 
 2. Omów przykłady zastosowania kolejki?
     W rozwiazaniach informatycznych kolejke stosuje sie glownie w sytuacjach
