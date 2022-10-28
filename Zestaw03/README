@@ -1,0 +1,71 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 28.10.2022 #
+#  Zestaw03: Lista I                                                          #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Jan_Kwinta_Zadanie01 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji programow
+- LinkedList.cpp        |   Pliki zrodlowe programow
+- Generator.cpp         |   |
+- LinkedList.hpp        |   Plik naglowkowy
+_______________________________________________________________________________
+
+
+
+
+* Odpowiedzi na pytania:
+_______________________________________________________________________________
+
+1.
+
+2.
+
+3.
+ 
+_______________________________________________________________________________
+
+
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Zadania 1 i 2=--
+
+LinkedList.hpp
+    Plik naglowkowy z wskaznikowa implementacja listy.
+
+
+LinkedList.x
+    Program operujacy na zaimplementowanej w cwiczeniu 1 liscie. 
+    Program czyta n instrukcji ze standardowego wejscia i obsluguje je
+    wedlug ponizszego formatu:
+
+        F x       -      wloz liczbe x na poczatek listy
+        B x       -      wloz liczbe x na koniec listy
+        f         -      wyjmij element z poczatku listy i wypisz jego wartosc
+                         jezeli kolejka jest pusta wypisz "EMPTY"
+        b         -      wyjmij element z konca listy i wypisz jego wartosc
+                         jezeli kolejka jest pusta wypisz "EMPTY"
+        R x y     -      jeżeli x nie jest obecny w liście wypisz "FALSE", 
+                         w przeciwnym razie zastąp pierwsze wystąpienie wartości 
+                         x przez y i wypisz "TRUE"
+        S         -      wypisz liczbe elementow w liscie
+
+    Obslugujac powyzsze dane zakladamy, ze:
+            ->  n <= 10^3
+            ->  0 <= x <= 10^3
+            ->  maksymalnie naraz w liście może znajdować się 10^3 elementów
+
+
+Generator.x
+    Program generujacy losowy zestaw danych dla programu "LinkedList.x" wedlug
+    formatu powyzej. Liczba n (liczba instrukcji) jest przekazywana 
+    do programu "Generator.x" przez argument jego wywolania. 
+
+_______________________________________________________________________________
+
