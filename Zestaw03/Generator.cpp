@@ -28,30 +28,55 @@ int main(int argc, char **argv)
     int numOfOperations = 0;
     if(argc > 1)
         numOfOperations = atoi(argv[1]);
-    std::cout << numOfOperations << "\n";
+    std::cout << numOfOperations << std::endl;
 
     while(numOfOperations--)
     {
-        int operationType = rand() % 3; // wylosowanie typu operacji:
-                                        // 0 - push
-                                        // 1 - pop
-                                        // 2 - size
+        int operationType = rand() % 6; // wylosowanie typu operacji:
+                                        // 0 - push front
+                                        // 1 - push back
+                                        // 2 - pop front
+                                        // 3 - pop back
+                                        // 4 - replace
+                                        // 5 - size
         switch(operationType)
         {
             case 0:
                 {
-                    std::cout << "A ";
-                    int element = rand() % 1000001; // wylosowanie elementu do wstawienia
-                    std::cout << element << "\n";
+                    std::cout << "F ";
+                    int element = rand() % 1001; // wylosowanie elementu do wstawienia
+                    std::cout << element << std::endl;
                 }
                 break;
 
             case 1:
-                std::cout << "D\n";
+                {
+                    std::cout << "B ";
+                    int element = rand() % 1001; // wylosowanie elementu do wstawienia
+                    std::cout << element << std::endl;
+                }
                 break;
 
             case 2:
-                std::cout << "S\n";
+                std::cout << "f" << std::endl;
+                break;
+
+            case 3:
+                std::cout << "b" << std::endl;
+                break;
+
+            case 4: 
+                {
+                    std::cout << "R ";
+                    /* wylosowanie elementow do wstawienia */
+                    int element1 = rand() % 1001; 
+                    int element2 = rand() % 1001; 
+                    std::cout << element1 << " " << element2 << std::endl;
+                }
+                break;
+
+            case 5:
+                std::cout << "S" << std::endl;
                 break;
         }
     }

@@ -16,8 +16,6 @@
 #include <iostream>
 #include <string>
 
-const int MAX_QUEUE_SIZE = 1000;
-
 int main(int argc, char **argv)
 {
     std::ios_base::sync_with_stdio(false);
@@ -27,6 +25,8 @@ int main(int argc, char **argv)
 
     int n; // liczba instrukcji podanych na wejsciu
     std::cin >> n;
+
+    int elementA, elementB;
     while(n--)
     {
         char instruction; // instrukcja podana na wejsciu
@@ -35,11 +35,10 @@ int main(int argc, char **argv)
         {
             case 'F':
                 /* wstawienie elementu na poczatek listy */
-                int elementF;
-                std::cin >> elementF;
+                std::cin >> elementA;
                 try
                 { 
-                    
+                    Lista.push_front(elementA);
                 }
                 catch(const std::out_of_range &oor)
                 {
@@ -49,11 +48,10 @@ int main(int argc, char **argv)
 
             case 'B':
                 /* wstawienie elementu na koniec listy */
-                int elementB;
-                std::cin >> elementB;
+                std::cin >> elementA;
                 try
                 {
-                    
+                    Lista.push_back(elementA);
                 }
                 catch(const std::out_of_range &oor)
                 {
@@ -65,11 +63,11 @@ int main(int argc, char **argv)
                 /* wyjecie elementu z poczatku listy */
                 try
                 {
-                    
+                    std::cout << Lista.pop_front() << "\n";
                 }
                 catch(const std::out_of_range &oor)
                 {
-                    std::cerr << "EMPTY" << "\n";
+                    std::cout << "EMPTY" << "\n";
                 }
                 break;
                 
@@ -77,20 +75,26 @@ int main(int argc, char **argv)
                 /* wyjecie elementu z konca listy */
                 try
                 {
-                    
+                    std::cout << Lista.pop_back() << "\n";
                 }
                 catch(const std::out_of_range &oor)
                 {
-                    std::cerr << "EMPTY" << "\n";
+                    std::cout << "EMPTY" << "\n";
                 }
                 break;
                 
             case 'R':
                 /* zastapienie pierwszego wystapienia wartosci
                    x w liscie na element y jezeli to mozliwe */
-                int elementX, elementY;
-                std::cin >> elementX >> elementY;
-                
+                std::cin >> elementA >> elementB;
+                if(Lista.replace(elementA, elementB))
+                {
+                    std::cout << "TRUE" << "\n";
+                }
+                else
+                {
+                    std::cout << "FALSE" << "\n";
+                }
                 break;
 
             case 'S':
