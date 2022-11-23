@@ -1,0 +1,73 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 04.11.2022 #
+#  Zestaw04: Lista II                                                         #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Zadanie03 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji programow
+- ArrayList.cpp         |   Pliki zrodlowe programow
+- CursorList.cpp        |   |
+- Generator.cpp         |   |
+- ArrayList.hpp         |   Pliki naglowkowe
+- CursorList.hpp        |   |
+_______________________________________________________________________________
+
+
+
+
+* Odpowiedzi na pytania:
+_______________________________________________________________________________
+
+1. Jakie są zalety implementacji wskaźnikowej, a jakie implementacji tablicowej?
+
+
+2. Jakie są zalety implementacji kursorowej?
+
+
+_______________________________________________________________________________
+
+
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Zadania 1 i 2=--
+
+ArrayList.hpp i CursorList.hpp
+    Pliki naglowkowe z odpowiednio tablicowa i kursorowa implementacja listy.
+
+
+ArrayList.x i CursorList.x
+    Programy operujace na zaimplementowanych w plikach naglowkowych listach. 
+    Program *List.x czyta n instrukcji ze standardowego wejscia i obsluguje je
+    wedlug ponizszego formatu:
+
+        F x       -      wloz liczbe x na poczatek listy
+        B x       -      wloz liczbe x na koniec listy
+        f         -      wyjmij element z poczatku listy i wypisz jego wartosc
+                         jezeli kolejka jest pusta wypisz "EMPTY"
+        b         -      wyjmij element z konca listy i wypisz jego wartosc
+                         jezeli kolejka jest pusta wypisz "EMPTY"
+        R x y     -      jeżeli x nie jest obecny w liście wypisz "FALSE", 
+                         w przeciwnym razie zastąp pierwsze wystąpienie wartości 
+                         x przez y i wypisz "TRUE"
+        S         -      wypisz liczbe elementow w liscie
+
+    Obslugujac powyzsze dane zakladamy, ze:
+            ->  n <= 10^3
+            ->  0 <= x <= 10^3
+            ->  maksymalnie naraz w liście może znajdować się 10^3 elementów
+
+
+Generator.x
+    Program generujacy losowy zestaw danych dla programu "*List.x" wedlug
+    formatu powyzej. Liczba n (liczba instrukcji) jest przekazywana 
+    do programu "Generator.x" przez argument jego wywolania. 
+
+_______________________________________________________________________________
+
