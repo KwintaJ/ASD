@@ -16,6 +16,7 @@
 #include <iostream>
 #include <utility>
 #include <algorithm>
+#include <memory>
 
 
 #ifndef ARRAYLIST
@@ -69,27 +70,44 @@ public:
 
     ~ArrayList()
     {
-    
     }
 
     ArrayList(const ArrayList& copiedList)
     {
-        
+        this->listSize = 0;
+        for(int i = 0; i < copiedList.listSize; i++)
+        {
+            this->push_back(copiedList.array[i]);
+        }
     }
 
     ArrayList& operator=(const ArrayList& copiedList)
     {
-
+        this->clear();
+        for(int i = 0; i < copiedList.listSize; i++)
+        {
+            this->push_back(copiedList.array[i]);
+        }
+        return *this;
     }
 
     ArrayList(ArrayList&& movedList)
     {
-
+        listSize = std::move(movedList.listSize);
+        for(int i = 0; i < movedList.listSize; i++)
+        {
+            array[i] = std::move(movedList.array[i]);
+        }
     }
 
     ArrayList& operator=(ArrayList&& movedList)
     {
-
+        listSize = std::move(movedList.listSize);
+        for(int i = 0; i < movedList.listSize; i++)
+        {
+            array[i] = std::move(movedList.array[i]);
+        }
+        return *this;
     }
 
     /* methods */
@@ -155,9 +173,13 @@ public:
 
     void clear()
     {
-        for(Iterator it = end(); listSize > 0; --it)
+        Iterator it = end();
+        --it;
+        while(!empty())
         {
             erase(it);
+            it = end();
+            --it;
         }
     }
 

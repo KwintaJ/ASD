@@ -29,12 +29,6 @@ int main(int argc, char **argv)
     int elementA, elementB;
     while(n--)
     {
-        for(auto x : Lista)
-        {
-            std::cerr << x << " ";
-        }
-        std::cerr << std::endl;
-
         char instruction; // instrukcja podana na wejsciu
         std::cin >> instruction;
         switch(instruction)

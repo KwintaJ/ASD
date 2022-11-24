@@ -27,46 +27,8 @@ class CursorList
 public:
     struct Node
     {
-        Node(): data{NULL}, indexNext{-1}, next{nullptr}
-        {
-        }
-
         T data;
-        int indexNext;
-        Node* next;
-    };
-
-    struct Iterator
-    {
-        int index;
-        Node* ptr;
-        
-        Iterator(int i, Node* p): index{i}, ptr{p}
-        {
-        }
-
-        T &operator*()
-        {
-            return ptr->data;
-        }
-        T *operator->()
-        {
-            return &(ptr->data);
-        }
-        bool operator==(const Iterator &X)
-        {
-            return this->index == X.index;
-        }
-        bool operator!=(const Iterator &Y)
-        {
-            return !(*this == Y);
-        }
-        Iterator operator++()
-        {
-            ptr = ptr->next;
-            index = ptr->indexNext;
-            return *this;
-        }
+        int next;
     };
 
     /* constructors */
@@ -79,34 +41,66 @@ public:
 
         for(int i = 0; i < maxSize; i++)
         {
-            array[i].indexNext = i + 1;
-            array[i].next = &array[i + 1];
+            array[i].next = i + 1;
         }
     }
 
     ~CursorList()
     {
-    
     }
 
     CursorList(const CursorList& copiedList)
     {
-        
+        this->listSize = 0;
+        this->spare = 0;
+        this->head = -1;
+        this->tail = -1;
+        for(int i = 0; i < maxSize; i++)
+        {
+            this->array[i].next = i + 1;
+        }
+
+        for(int i = 0; i < copiedList.listSize; i++)
+        {
+            this->push_back(copiedList.array[i].data);
+        }
     }
 
     CursorList& operator=(const CursorList& copiedList)
     {
-
+        this->clear();
+        for(int i = 0; i < copiedList.listSize; i++)
+        {
+            this->push_back(copiedList.array[i].data);
+        }
+        return *this;
     }
 
     CursorList(CursorList&& movedList)
     {
-
+        listSize = std::move(movedList.listSize);
+        spare = std::move(movedList.spare);
+        head = std::move(movedList.head);
+        tail = std::move(movedList.tail);
+        for(int i = 0; i < maxSize; i++)
+        {
+            array[i].data = std::move(movedList.array[i].data);
+            array[i].next = std::move(movedList.array[i].next);
+        }
     }
 
     CursorList& operator=(CursorList&& movedList)
     {
-
+        listSize = std::move(movedList.listSize);
+        spare = std::move(movedList.spare);
+        head = std::move(movedList.head);
+        tail = std::move(movedList.tail);
+        for(int i = 0; i < maxSize; i++)
+        {
+            array[i].data = std::move(movedList.array[i].data);
+            array[i].next = std::move(movedList.array[i].next);
+        }
+        return *this;
     }
 
     /* methods */
@@ -121,116 +115,141 @@ public:
     }
 
     template<class U>
-    Iterator insert(Iterator it, U&& x)
+    void insert(int i, U&& x)
     {
         listSize++;
-
+        
         int xsIndex = spare;
-
         array[xsIndex].data = std::forward<U>(x);
-        spare = array[xsIndex].indexNext;
 
         if(listSize == 1)
         {
-            array[xsIndex].indexNext = spare;
-            array[xsIndex].next = &array[spare];
-            head = 0;
-            tail = 0;
-            return begin();
-        }
-        if(it == begin())
-        {
-            array[xsIndex].indexNext = head;
-            array[xsIndex].next = &array[head];
             head = xsIndex;
-            return it;
-        }
-        if(it == end())
-        {
-            array[tail].indexNext = xsIndex;
-            array[tail].next = &array[xsIndex];
             tail = xsIndex;
-            return Iterator{xsIndex, &array[xsIndex]};
+            spare = array[spare].next;
+            array[tail].next = spare;
+            return;
         }
 
-        for(Iterator it2 = begin(); it2 != end(); ++it2)
+        if(i == head)
         {
-            if(Iterator{it2.ptr->indexNext, it2.ptr->next} == it)
-            {
-                int index2 = it2.index;
-                array[xsIndex].indexNext = array[index2].indexNext;
-                array[xsIndex].next = array[xsIndex].next;
+            spare = array[spare].next;
 
-                array[index2].indexNext = index2;
-                array[index2].next = &array[xsIndex];
+            array[xsIndex].next = head;
+            head = xsIndex;
 
-                return it;
-            }
+            array[tail].next = spare;
+
+            return;
         }
- 
-        return it;        
+
+        if(i == spare)
+        {
+            array[tail].next = xsIndex;
+            tail = xsIndex;
+
+            spare = array[spare].next;
+            array[xsIndex].next = spare;
+
+            array[tail].next = spare;
+
+            return;
+        }
+
+        spare = array[spare].next;
+
+        for(int j = head; j != spare; )
+        {
+            if(array[j].next == i)
+            {
+                array[j].next = xsIndex;
+                array[xsIndex].next = i;
+                array[tail].next = spare;
+
+                return;
+            }
+
+            j = array[j].next;
+        }  
+
+        return;
     }
 
-    Iterator erase(Iterator it)
+    int erase(int i)
     {
-        listSize--;
-        Iterator itToSpare = end();
+        listSize--;   
 
         if(listSize == 0)
         {
-            spare = 0;
-            array[spare].indexNext = itToSpare.index;
-            array[spare].next = itToSpare.ptr;
+            array[i].next = spare;
+            spare = i;
             head = -1;
             tail = -1;
-            return end();
-        }
-        if(it == begin())
-        {
-            spare = head;
-            head = array[head].indexNext;
-            array[spare].indexNext = itToSpare.index;
-            array[spare].next = itToSpare.ptr;
-            return it;
+            return spare;
         }
 
-        for(Iterator it2 = begin(); it2 != end(); ++it2)
+        if(i == head)
         {
-            if(Iterator{it2.ptr->indexNext, it2.ptr->next} == it)
+            head = array[i].next;
+            array[i].next = spare;
+            spare = i;
+
+            array[tail].next = spare;
+
+            return head;
+        }
+
+        if(i == tail)
+        {
+            for(int j = head; j != spare; )
             {
-                int index2 = it2.index;
-                spare = array[index2].indexNext;
-                array[spare].indexNext = itToSpare.index;
-                array[spare].next = itToSpare.ptr;
+                if(array[j].next == i)
+                {   
+                    array[i].next = spare;
+                    spare = i;
 
-                array[index2].next = array[array[index2].indexNext].next;
-                array[index2].indexNext = array[array[index2].indexNext].indexNext;
-                if(it == Iterator{tail, &array[tail]})
-                {
-                    tail = index2;
+                    array[j].next = spare;
+                    tail = j;
+
+                    return spare;
                 }
 
-                return ++it2;
-            }
+                j = array[j].next;
+            } 
+
+            return tail;            
         }
 
-        return it;        
+        for(int j = head; j != spare; )
+        {
+            if(array[j].next == i)
+            {
+                array[j].next = array[i].next;
+                array[i].next = spare;
+                spare = i;
+                return array[j].next;
+            }
+
+            j = array[j].next;
+        }  
+
+        return -1;
     }
 
     int remove(const T& x)
     {
         int counter = 0;
-        Iterator it = begin();
+        int i = head;
 
-        while(it != end())
+        while(i != spare)
         {
-            if(*it == x)
+            if(array[i].data = x)
             {
                 counter++;
-                it = erase(it);
+                erase(i);
             }
-            else
-                it++;
+            
+            i = array[i].next;
         }
 
         return counter;
@@ -238,28 +257,30 @@ public:
 
     void clear()
     {
-        for(Iterator it = end(); listSize > 0; --it)
+        for(int i = head; listSize > 0; i = head)
         {
-            erase(it);
+            erase(i);
         }
     }
 
-    Iterator find(const T& x)
+    int find(const T& x)
     {
-        for(Iterator it = begin(); it != end(); ++it)
+        for(int i = head; i != spare; )
         {
-            if(*it == x)
-                return it;
+            if(array[i].data == x)
+                return i;
+
+            i = array[i].next;
         }
-        return end();
+        return -1;
     }
 
     template<class U>
     bool replace(const T& x, U&& y)
     {
-        Iterator firstOccurence = find(x);
+        int firstOccurence = find(x);
 
-        if(firstOccurence != end())
+        if(firstOccurence != -1)
         {
             insert(erase(firstOccurence), std::forward<U>(y));
             return true;
@@ -273,7 +294,7 @@ public:
         if(listSize == maxSize)
             throw std::out_of_range ("overflow");
 
-        insert(begin(), std::forward<U>(x));
+        insert(head, std::forward<U>(x));
     }
     
     T pop_front()
@@ -282,7 +303,7 @@ public:
             throw std::out_of_range ("underflow");
 
         T val = array[head].data;
-        erase(begin());
+        erase(head);
         return val;
     }
 
@@ -292,7 +313,7 @@ public:
         if(listSize == maxSize)
             throw std::out_of_range ("overflow");
         
-        insert(end(), std::forward<U>(x));
+        insert(spare, std::forward<U>(x));
     }
 
     T pop_back()
@@ -301,20 +322,8 @@ public:
             throw std::out_of_range ("underflow");
 
         T val = array[tail].data;
-        erase(Iterator{tail, &array[tail]});
+        erase(tail);
         return val;
-    }
-
-    Iterator begin()
-    {
-        if(listSize == 0)
-            return end();
-        return Iterator{head, &array[head]};
-    }
-
-    Iterator end()
-    {
-        return Iterator{spare, &array[spare]};
     }
 
 private:
@@ -323,7 +332,7 @@ private:
     int tail;
     int spare;
     int listSize;
-    const int maxSize = 3;
+    const int maxSize = 1000;
 };
 
 #endif
