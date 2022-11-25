@@ -1,0 +1,35 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 25.11.2022 #
+#  Zestaw05: Proste algorytmy sortowania                                      #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Zadanie03 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji programow
+- BubbleSort.cpp        |   Pliki zrodlowe programow
+- SelectionSort.cpp     |   |
+- InsertionSort.cpp     |   |
+- Generator.cpp         |   |
+_______________________________________________________________________________
+
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Zadania od 1 do 3=--
+
+BubbleSort.x, SelectionSort.x i InsertionSort.x
+    
+
+Generator.x
+    Program generujacy losowy zestaw danych dla programu "*Sort.x" wedlug
+    formatu powyzej. Liczba n (liczba liczb do posortowania) oraz liczba m
+    (maksymalna liczba w zestawie) sa przekazywane do programu "Generator.x" 
+    przez argument jego wywolania. 
+
+_______________________________________________________________________________
+
