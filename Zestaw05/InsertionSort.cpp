@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
 
 /* szablon funkcji sortujacej wektor v
    sortowanie przez wstawianie */
@@ -39,10 +40,18 @@ int main(int argc, char **argv)
     while(std::cin >> x)
         V.push_back(x);
         
+    /* pomiar czasu */
+    auto start = std::chrono::high_resolution_clock::now();
+        
     /* sortowanie wektora V */
     sort(V);
-   
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+       
     /* wypisanie calej zawartosci wektora */
     for(const auto& i : V)
         std::cout << i << std::endl;
+        
+    std::cerr << "Elapsed time: " << elapsed.count() << " seconds" << std::endl;
 }

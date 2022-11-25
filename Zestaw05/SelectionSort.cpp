@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <vector>
+#include <chrono>
 
 #define MAXIMAL_VAL 200000000
 
@@ -46,8 +47,15 @@ int main(int argc, char **argv)
     while(std::cin >> x)
         V.push_back(x);
         
+    /* pomiar czasu */
+    auto start = std::chrono::high_resolution_clock::now();
+        
     /* sortowanie wektora V */
     sort(V);
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cerr << "Elapsed time: " << elapsed.count() << " seconds" << std::endl;;
    
     /* wypisanie calej zawartosci wektora */
     for(const auto& i : V)
