@@ -1,6 +1,8 @@
 ## Jan Kwinta ##
 
-ALGORYTMY I STRUKTURY DANYCH
+Algorytmy i Struktury Danych
+___  
+  
 
 **Zestaw01**: Stos  
 **Zestaw02**: Kolejka  
