@@ -1,7 +1,8 @@
-## Jan Kwinta ##
-
 Algorytmy i Struktury Danych
-___  
+============================
+
+Jan Kwinta
+----------
   
 
 **Zestaw01**: Stos  
