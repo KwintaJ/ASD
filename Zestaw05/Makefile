@@ -27,22 +27,25 @@ sourceBS = BubbleSort
 sourceSS = SelectionSort
 sourceIS = InsertionSort
 sourceGen = Generator
+sourceTest = timeTester
 
 # Objects
 objectsBS = $(addsuffix .o,$(sourceBS))
 objectsSS = $(addsuffix .o,$(sourceSS))
 objectsIS = $(addsuffix .o,$(sourceIS))
 objectsGen = $(addsuffix .o,$(sourceGen))
+objectsTest = $(addsuffix .o,$(sourceTest))
 
 
 #==============================================================================
 # ZALEZNOSCI (kompilacja):
 
-all: BubbleSort.x SelectionSort.x InsertionSort.x Generator.x
+all: BubbleSort.x SelectionSort.x InsertionSort.x Generator.x timeTester.x
 BubbleSort.x: $(objectsBS)
 SelectionSort.x: $(objectsSS)
 InsertionSort.x: $(objectsIS)
 Generator.x: $(objectsGen)
+timeTester.x: $(objectsTest)
 
 %.o: %.cpp
 	$(CO) $(CFLAGS) -c -o $@ $<

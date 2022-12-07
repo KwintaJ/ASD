@@ -48,10 +48,10 @@ int main(int argc, char **argv)
     
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
+    std::cerr << elapsed.count() << ", ";
+
        
     /* wypisanie calej zawartosci wektora */
     for(const auto& i : V)
         std::cout << i << std::endl;
-        
-    std::cerr << "Elapsed time: " << elapsed.count() << " seconds" << std::endl;
 }

@@ -33,6 +33,6 @@ int main(int argc, char **argv)
 
     while(numOfOperations--)
     {
-        std::cout << rand() % maxNum << "\n"; //wypisanie losowej liczby
+        std::cout << (rand() % maxNum) + 1 << "\n"; //wypisanie losowej liczby
     }
 }

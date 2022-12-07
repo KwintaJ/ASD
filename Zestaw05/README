@@ -13,6 +13,11 @@ Katalog Zadanie03 zawiera nastepujace pliki:
 - SelectionSort.cpp     |   |
 - InsertionSort.cpp     |   |
 - Generator.cpp         |   |
+- timeTester.cpp        |   |
+- wykres.py             |   Skrypt w pythonie rysujacy wykres
+- wykres.PNG            |   Grafika PNG z wykresem porownujacym
+                        |       czasy wykonania roznych implementacji
+                        |       algorytmow sortujacych
 _______________________________________________________________________________
 
 
@@ -20,16 +25,62 @@ _______________________________________________________________________________
 * Opisy programow:
 _______________________________________________________________________________
 
---=Zadania od 1 do 3=--
+--=Zadanie 1 i 3=--
 
 BubbleSort.x, SelectionSort.x i InsertionSort.x
-    
+    Implementacja roznych prostych algorytmow sortujacych: babelkowego,
+    sortowania przez wybieranie i sortowania przez wstawianie. Kazdy z 
+    programow wczytuje liczby ze standardowego wejscia, sortuje je
+    w kolejnosci niemalejacej i wypisuje na standardowe wyjscie. 
+    Kazdy program wypisuje na standardowe wyjscie bledow swoj czas
+    wykonania.    
 
 Generator.x
-    Program generujacy losowy zestaw danych dla programu "*Sort.x" wedlug
-    formatu powyzej. Liczba n (liczba liczb do posortowania) oraz liczba m
-    (maksymalna liczba w zestawie) sa przekazywane do programu "Generator.x" 
-    przez argument jego wywolania. 
+    Program generujacy losowy zestaw danych dla programu "*Sort.x".
+    Liczba n (liczba liczb do posortowania) oraz liczba m (maksymalna 
+    wartosc) sa przekazywane do programu "Generator.x" przez argument 
+    jego wywolania. 
+
+timesTester.x
+    Program przyjmuje jako argument wywolania nazwe testowanego programu:
+    *Sort. Program wywoluje nastepujaca komende:
+
+    ./Generator.x N 10000 | ./*Sort.x > data.txt 2>> times*Sort.txt
+
+    gdzie jako N podstawia kolejno 1000, 2000, 3000, 4000, ..., 10000
+
+    Mierzony przez program *Sort.x czas jest przekierowywany z wyjscia 
+    bledow i dopisywany do pliku times*Sort.txt.
+
+
+--=Zadanie 2=--
+
+BubbleSort.x
+    Zmodyfikowana implementacja sortowania babelkowego. Program zlicza liczbe
+    wykonanych operacji dominujacych (porownan oraz zamian). Program
+    wypisuje te liczby na standartowe wyjsce bledow.
+
+Zlozonosc
+    Pesymistyczna zlozonosc: 
+                                wektor jest ulozony w kolejnosci nierosnacej
+
+        Liczba porownan: (n - 1) + (n - 2) + ... + 1 = 1/2 * n * (n - 1)
+                         => O(n^2)
+
+        Liczba zamian: zmieniamy kazda porownywana pare => O(n^2)
+
+
+
+    Optymistyczna zlozonosc:
+                                wektor jest ulozony w kolejnosci niemalejacej
+
+        Liczba porownan: flaga swapped nigdy nie zmienia sie z false na true
+                         => O(n)
+
+        Liczba zamian: nie zmieniamy nic => 0 => O(1) 
+
+
+    Srednia zlozonosc: O(n^2) zamian i porownan
 
 _______________________________________________________________________________
 
