@@ -23,8 +23,14 @@ void sort(std::vector<T>& v)
 {
     for(int i = 1; i < (int)v.size(); i++)
     {
-        for(int j = i; j > 0 && v[j - 1] > v[j]; j--)
-            std::swap(v[j - 1], v[j]);
+        T hold = v[i];
+        int j = i - 1;
+        while(j >= 0 && v[j] > hold)
+        {
+            v[j + 1] = v[j];
+            j--;
+        }
+        v[j + 1] = hold;
     }
 }
 
