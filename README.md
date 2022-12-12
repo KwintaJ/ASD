@@ -11,3 +11,4 @@ Jan Kwinta
 **Zestaw04**: Lista II  
 **Zestaw05**: Proste algorytmy sortowania  
 **Zestaw06**: Drzewo binarne  
+**Zestaw07**: Słownik  
