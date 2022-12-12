@@ -1,0 +1,121 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 09.12.2022 #
+#  Zestaw06: Binarne drzewo poszukiwan                                        #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Zadanie03 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji
+- BinaryTree.cpp        |   Plik zrodlowy programu
+- BinaryTree.hpp        |   Plik naglowkowy z implementacja klasy 
+_______________________________________________________________________________
+
+
+
+* Pytania:
+_______________________________________________________________________________
+
+1. Jakie operacje są relatywnie szybko wykonywane na drzewie BST, porównaj
+złożoności czasowe z innymi strukturami danych.
+
+    Wstawianie do drzewa w czasie srednim O(log n), pesymistycznym O(n);
+    Wolniej niz w liscie, stosie, kolejce itp -> O(1)
+
+    Znalezienie elementu w drzewie (lub stwierdzenie ze go w drzewie nie ma) 
+    w czasie srednim O(log n), pesymistycznym O(n);
+    Zazwyczaj szybciej niz w liscie -> O(n)
+
+    Wyznaczenie wartosci elementu najmniejszego/najwiekszego w czasie 
+    srednim O(log n), pesymistycznym O(n);
+    Zazwyczaj szybciej niz w liscie -> O(n)
+
+
+
+    Pesymistyczny przypadek dla drzewa zachodzi np. gdy korzeniem jest 
+    element najmniejszy i wszystkie wierzcholki nie maja lewych dzieci.
+
+
+
+2. Na czym polega iteracyjne przechodzenie drzewa bez użycia rekurencji?
+
+    A. Zapamietujemy wskaznik AKT (aktualny wierzcholek), na poczatku 
+    wskazujacy na korzen drzewa.
+
+    B. Wszystkie dzieci wierzcholka wskazywanego przez AKT wstawiamy
+    do kolejki/stosu Q.
+
+    C. AKT niech wskazuje na pierwszy element Q. Usuwamy ten element z Q.
+
+    D. Powtarzamy B i C dopoki struktura AKT nie bedzie pusta.
+
+
+3. W jaki sposób można użyć drzewo BST do sortowania elementów? Wskaż
+podobieństwo do wcześniej poznanego algorytmu sortowania. Omów wady takiego
+rozwiązania.
+
+    Wkladajac element do drzewa automatycznie go "sortujemy". Wystarczy
+    wypisac drzewo w kolejnosci inorder i otrzymamy niemalejacy
+    ciag elementow.
+
+    Ten sposob przypomina sortowanie poprzez wstawianie (Insertion Sort),
+    w ktorym bierzemy kolejne jeszcze nieposortowane elementy i szukamy dla
+    nich odpowiednich miejsc.
+
+    Glowna wada tego rozwiazania jest pesymistyczna zlozonosc czasowa 
+    O(n^2), na przyklad kiedy zestaw elementow, ktore chcemy posortowac
+    jest ulozony w kolejnosci dokladnie odwrotnej do pozadanej.
+
+
+4. Na czym polega przechodzenie drzewa preorder?
+
+    Funkcja wypisujaca najpierw wypisuje dane z wierzcholka,
+    potem rekurencyjnie wchodzi do lewego dziecka, potem do prawego
+    (jezeli istnieja).
+
+
+5. Na czym polega przechodzenie drzewa inorder? Jaka będzie kolejność
+wypisywanych elementów?
+
+    Funkcja wypisujaca najpierw rekurencyjnie wchodzi do lewego dziecka
+    wierzcholka, (jezeli istnieje), potem wypisuje dane z wierzcholka, 
+    a potem rekurencyjnie do prawego dziecka wierzcholka (jezeli istnieje).
+
+    W drzewie przeszukiwan binarnych w ten sposob wypiszemy elementy
+    w kolejnosci niemalejacej.
+
+
+6. Na czym polega przechodzenie drzewa postorder?
+
+    Funkcja wypisujaca najpierw wchodzi do lewego dziecka, potem do prawego
+    (jezeli istnieja), a dopiero na koncu wypisuje dane z wierzcholka.
+
+
+_______________________________________________________________________________
+
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Zadanie 1=--
+
+BinaryTree.hpp, BinaryTree.x
+
+    Implementacja binarnego drzewa poszukiwan.
+
+    Program wczytuje n liczb calkowitych ze standardowego wejscia i
+    wstawia je do binarnego drzewa poszukiwan.
+
+    Nastepnie na standardowe wyjscie wypisuje:
+
+        - rozmiar drzewa
+        - wysokosc drzewa
+        - element najmniejszy
+        - element najwiekszy
+        - wszystkie elementy w kolejnosci preorder
+        - dla kazdej z liczb 1-9 wypisuje "Yes"/"No" czy ta liczba
+          znajduje sie w drzewie
+_______________________________________________________________________________
