@@ -49,8 +49,6 @@ test: all
 	./Generator.x
 	./Tester.x
 
-
-
 %.o: %.cpp
 	$(CO) $(CFLAGS) -c -o $@ $<
 
