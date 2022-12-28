@@ -1,0 +1,37 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 28.12.2022 #
+#  Zestaw07: Slownik                                                          #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Zestaw07 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji
+- Dict.cpp              |   Plik zrodlowy programu
+- LinkedList.hpp		|   Plik naglowkowy z implementacja listy wskaznikowej
+- slowa.txt             |   Plik tekstowy zawierajacy 32 pary slow 
+_______________________________________________________________________________
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Zadanie 1 i 2=--
+
+Dict.x
+	
+	Implementacja slownika przechowujacego pary lancuchow znakow w postaci
+	(klucz - wartosc). Program przyjmuje jako argument wywolania programu
+	nazwe pliku tekstowego. Z podanego pliku wczytuje do slownika pary 
+	wyrazow. Nastepnie wczytuje ze standardowego wejscia slowa (klucze) i
+	na standardowe wyjscie wypisuje wartosci odpowiadajace tym kluczom
+	lub znak "-" jezeli podanego klucza nie ma w slowniku.
+
+slowa.txt
+	W tym pliku umieszczonych jest 32 par slow. Pierwsze slowo z pary to 
+	zaczynajace sie na litere "j" (jak Jan) slowo w jezyku polskim. Drugie
+	slowo to jego angielskie tlumaczenie.
+
+_______________________________________________________________________________
