@@ -10,7 +10,7 @@ Katalog Zestaw07 zawiera nastepujace pliki:
 - README                |   Ten plik 
 - Makefile              |   Plik do kompilacji
 - Dict.cpp              |   Plik zrodlowy programu
-- LinkedList.hpp	|   Plik naglowkowy z implementacja listy wskaznikowej
+- LinkedList.hpp        |   Plik naglowkowy z implementacja listy wskaznikowej
 - slowa.txt             |   Plik tekstowy zawierajacy 32 pary slow 
 _______________________________________________________________________________
 
