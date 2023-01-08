@@ -4,7 +4,7 @@
 //                                            //
 //                                            //
 //    Projekt: Prostokat                      //
-//    Plik: Generator.cpp                     //
+//    Plik: Tester.cpp                        //
 //                                            //
 //    Program do testowania                   //
 //                                            //
