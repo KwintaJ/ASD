@@ -17,6 +17,7 @@
 #include <fstream>
 #include <algorithm>
 #include <time.h>
+#include <set>
 
 void writeTest(int modulo, std::string fileName)
 {
@@ -28,6 +29,7 @@ void writeTest(int modulo, std::string fileName)
 
     fileToWrite << w << " " << h << " " << n << std::endl;
 
+    std::set<std::pair<int, int>> S;
     for(int i = 0; i < n; i++)
     {
         int x = rand() % modulo; 
@@ -39,7 +41,18 @@ void writeTest(int modulo, std::string fileName)
         if(rand() % 2)
             y *= -1;
 
-        fileToWrite << x << " " << y << std::endl;
+        std::pair<int, int> P;
+        P.first = x;
+        P.second = y;
+        if(S.find(P) == S.end())
+        {
+            S.insert(P);
+            fileToWrite << x << " " << y << std::endl;
+        }
+        else
+        {
+            i--;
+        }
     }
 
     fileToWrite.close();

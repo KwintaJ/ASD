@@ -46,7 +46,7 @@ Generator.x: $(objectsGen)
 Tester.x: $(objectsTest)
 
 test: all
-	#./Generator.x
+	./Generator.x
 	./Tester.x
 
 %.o: %.cpp
