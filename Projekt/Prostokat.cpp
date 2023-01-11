@@ -11,112 +11,111 @@
 //############################################//
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
-#include <deque>
 
-struct Point
-{
-    Point(int a, int b)
-    {
-        x = a;
-        y = b;
-    }
+#include "Point.hpp"          // struktura reprezentujaca punkt na plaszczyznie
+#include "IntervalTree.hpp"   // funkcje drzewa przedzialowego
+#include "Vector.hpp"         // wektor
+#include "LinkedQueue.hpp"    // kolejka wskaznikowa
 
-    int x = 0;
-    int y = 0;
-};
+const int MAX_NUMBER_OF_POINTS = 15000;
 
-bool operator<(const Point &A, const Point &B)
-{
-    if(A.x == B.x)
-        return A.y < B.y;
-    return A.x < B.x;
-}
-
-bool operator==(const Point &A, const Point &B)
-{
-    if(A.x == B.x && A.y == B.y)
-        return true;
-    return false;
-}
-
-struct {
-    bool operator()(const Point &A, const Point &B)
-    {
-        if(A.y == B.y)
-            return A.x < B.x;
-        return A.y < B.y;
-    }
-} SortPointsByY;
-
-/* query declaration */
-int query(int tree[], int modf[], int v, int left, int right, int p, int q);
-
-/* pushing modificators */
-void push(int tree[], int modf[], int v, int left, int right)
-{
-    if(modf[v] != 0)
-    {
-        modf[2*v] += modf[v];
-        modf[2*v+1] += modf[v];
-        modf[v] = 0;
-        int middle = (left + right) / 2;
-        int child1 = query(tree, modf, 2*v, left, middle, left, middle);
-        int child2 = query(tree, modf, 2*v+1, middle, right, middle, right);
-        tree[v] = std::max(child1, child2);
-    }
-}
-
-/* query */
-int query(int tree[], int modf[], int v, int left, int right, int p, int q)
-{
-    if(p <= left && q >= right)
-        return tree[v] + modf[v];
-
-    if(right <= p || left >= q)
-        return -1;
-
-    push(tree, modf, v, left, right);
-
-    int middle = (left + right) / 2;
-    int child1 = query(tree, modf, 2*v, left, middle, p, q);
-    int child2 = query(tree, modf, 2*v+1, middle, right, p, q);
-
-    return std::max(child1, child2);
-}
-
-/* interval tree update +x on range (p, q) */
-void update(int tree[], int modf[], int v, int left, int right, int p, int q, int x)
-{
-    if(p <= left && q >= right)
-    {
-        modf[v] += x;
-        return;
-    }
-
-    if(right <= p || left >= q)
-        return;
-
-    push(tree, modf, v, left, right);
-
-    int middle = (left + right) / 2;
-    update(tree, modf, 2*v, left, middle, p, q, x);
-    update(tree, modf, 2*v+1, middle, right, p, q, x);
-
-    int child1 = query(tree, modf, 2*v, left, middle, left, middle);
-    int child2 = query(tree, modf, 2*v+1, middle, right, middle, right);
-
-    tree[v] = std::max(child1, child2);
-}
-
+/* struktura reprezentujaca przedzial */
 struct Range
 {
     int left = -30001;
     int right = 30001;
 };
 
-int binsearch(std::vector<Point> &allPointsByY, Point P, int BSleft, int BSright)
+/* funkcja zwracajaca wieksza z dwoch liczb calkowitych */
+int maxOf(const int &A, const int &B);
+
+/* wyszukanie punktu o danej wspolrzednej y z tablicy wszystkich punktow 
+   posortowanej po wspolrzednych y; funkcja zwraca indeks w tablicy; O(log n) */
+int binsearch(Vector<Point> &allPointsByY, Point P, int BSleft, int BSright);
+
+/* obliczenie przedzialu na ktorym nalezy zaaktualizowac wartosci w drzewie przedzialowym */
+Range calculateRange(Vector<Point> &allPointsByY, Point P, int n, int h);
+
+/* funkcje aktualizujace wartosci drzewa */
+void throwInTree(int tree[], int modf[], Vector<Point> &allPointsByY, int n, int h, Point P);
+void pullOutFromTree(int tree[], int modf[], Vector<Point> &allPointsByY, int n, int h, Point P);
+
+//#################################################################################################################################################################################
+int main(int argc, char **argv)
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL); std::cout.tie(NULL);
+
+    /* input */
+    int w, h, n;
+    std::cin >> w >> h >> n;
+
+    Vector<Point> allPointsSortedByX;
+    Vector<Point> allPointsSortedByY;
+
+    for(int i = 0; i < n; i++)
+    {
+        int a, b;
+        std::cin >> a >> b;
+        allPointsSortedByX.push_back(Point(a, b));
+        allPointsSortedByY.push_back(Point(a, b));
+    }
+
+    /* drzewo przedzialowe max() */
+    int tree[4 * MAX_NUMBER_OF_POINTS + 1] = {0};
+    /* tablica modyfikatorow */
+    int modf[4 * MAX_NUMBER_OF_POINTS + 1] = {0};
+
+    int Output = 0;
+
+    /* sortowanie punktow */
+    std::sort(allPointsSortedByX.begin(), allPointsSortedByX.end(), SortPointsByX);
+    std::sort(allPointsSortedByY.begin(), allPointsSortedByY.end(), SortPointsByY);
+
+
+    Queue<Point, MAX_NUMBER_OF_POINTS> currentlyProcessed; // kolejka punktow aktualnie przetwarzanych
+    int i = 0;
+    
+    /* ============ miotla - algorytm zachlanny ============ */
+    while(i < n)
+    {
+        Point P = allPointsSortedByX[i]; // nowy punkt
+
+        /* zapytanie - czy trzeba wyrzucic punkt najbardziej na lewo */
+        if(currentlyProcessed.empty() || (P.x - currentlyProcessed.front().x) <= w)
+        {
+            /* nie trzeba - mozemy dodac P do currentlyProcessed */
+            currentlyProcessed.push(P);
+            throwInTree(tree, modf, allPointsSortedByY, n, h, P);
+            i++;
+        }
+        else
+        {
+            /* trzeba - zanim wiec dodamy P musimy usunac najstarszy 
+               element kolejki currentlyProcessed */
+
+            /* zanim go usuniemy chcemy dowiedziec sie jaki jest max() na calym przedziale [1, n) */
+            Output = maxOf(Output, query(tree, modf, 1, 1, n, 1, n));
+            pullOutFromTree(tree, modf, allPointsSortedByY, n, h, currentlyProcessed.front());
+            currentlyProcessed.pop();
+        }
+    }
+    Output = maxOf(Output, query(tree, modf, 1, 1, n, 1, n));
+
+    std::cout << Output << std::endl;
+}
+//#################################################################################################################################################################################
+
+
+int maxOf(const int &A, const int &B)
+{
+    if(A >= B)
+        return A;
+    return B;
+}
+
+int binsearch(Vector<Point> &allPointsByY, Point P, int BSleft, int BSright)
 {
     while (BSleft <= BSright)
     {
@@ -139,7 +138,7 @@ int binsearch(std::vector<Point> &allPointsByY, Point P, int BSleft, int BSright
     return -1;
 }
 
-Range calculateRange(std::vector<Point> &allPointsByY, Point P, int n, int h)
+Range calculateRange(Vector<Point> &allPointsByY, Point P, int n, int h)
 {
     Range R;
 
@@ -147,9 +146,19 @@ Range calculateRange(std::vector<Point> &allPointsByY, Point P, int n, int h)
     if(index == -1)
         return R;
 
-    R.right = index;
-
     int j = index;
+    while(j < n)
+    {
+        if(allPointsByY[index].y == allPointsByY[j].y)
+        {
+            R.right = j;
+            j++;
+        }
+        else
+            break;
+    }
+
+    j = index;
     while(j >= 0)
     {
         if(allPointsByY[index].y - allPointsByY[j].y <= h)
@@ -161,75 +170,19 @@ Range calculateRange(std::vector<Point> &allPointsByY, Point P, int n, int h)
             break;
     }
 
-    R.right++;
+    R.left++;
+    R.right+=2;
     return R;
 }
 
-void throwInTree(int tree[], int modf[], std::vector<Point> &allPointsByY, int n, int h, Point P)
+void throwInTree(int tree[], int modf[], Vector<Point> &allPointsByY, int n, int h, Point P)
 {
     Range R = calculateRange(allPointsByY, P, n, h);
     update(tree, modf, 1, 1, n, R.left, R.right, 1);
 }
 
-void pullOutFromTree(int tree[], int modf[], std::vector<Point> &allPointsByY, int n, int h, Point P)
+void pullOutFromTree(int tree[], int modf[], Vector<Point> &allPointsByY, int n, int h, Point P)
 {
     Range R = calculateRange(allPointsByY, P, n, h);
     update(tree, modf, 1, 1, n, R.left, R.right, -1);
-}
-
-//#############################################################################
-int main(int argc, char **argv)
-{
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(NULL); std::cout.tie(NULL);
-
-    /* input */
-    int w, h, n;
-    std::cin >> w >> h >> n;
-
-    /* all points on the plane */
-    std::vector<Point> allPoints;
-    std::vector<Point> allPointsSortedByY;
-
-    for(int i = 0; i < n; i++)
-    {
-        int a, b;
-        std::cin >> a >> b;
-        allPoints.push_back(Point(a, b));
-        allPointsSortedByY.push_back(Point(a, b));
-    }
-
-    /* interval max() tree */
-    int tree[4 * 15000 + 1] = {0};
-    /* modificator array */
-    int modf[4 * 15000 + 1] = {0};
-
-    int Output = 0;
-
-    std::sort(allPoints.begin(), allPoints.end());
-    sort(allPointsSortedByY.begin(), allPointsSortedByY.end(), SortPointsByY);
-
-    std::deque<Point> processed;
-    int i = 0;
-    while(i < n)
-    {
-        Point P = allPoints[i];
-
-        if(processed.empty() || P.x - processed[0].x <= w)
-        {
-            processed.push_back(P);
-            throwInTree(tree, modf, allPointsSortedByY, n, h, P);
-            // std::cerr << "for i = " << i << " tree[1] = " << tree[1] << std::endl;
-            i++;
-        }
-        else
-        {
-            Output = std::max(Output, query(tree, modf, 1, 1, n, 1, n));
-            pullOutFromTree(tree, modf, allPointsSortedByY, n, h, processed[0]);
-            processed.pop_front();
-        }
-    }
-    Output = std::max(Output, query(tree, modf, 1, 1, n, 1, n));
-
-    std::cout << Output << std::endl;
 }

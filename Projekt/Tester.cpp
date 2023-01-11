@@ -22,10 +22,17 @@ int main(int argc, char **argv)
     {
         std::string testFileIn = "./tests/in/" + std::to_string(i) + ".in";
         std::string testFileOut = "./tests/out/" + std::to_string(i) + ".out";
-        std::string fileToTest = "./tests/toTest/" + std::to_string(i) + ".out";
 
         if(system(("./ProstokatBrute.x < " + testFileIn + " > " + testFileOut).c_str()))
             break;
+    }
+
+    for(int i = 0; i < 1000; i++)
+    {
+        std::string testFileIn = "./tests/in/" + std::to_string(i) + ".in";
+        std::string testFileOut = "./tests/out/" + std::to_string(i) + ".out";
+        std::string fileToTest = "./tests/toTest/" + std::to_string(i) + ".out";
+        
         if(system(("./Prostokat.x < " + testFileIn + " > " + fileToTest).c_str()))
             break;
 

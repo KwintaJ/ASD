@@ -14,26 +14,7 @@
 #include <vector>
 #include <algorithm>
 
-struct Point
-{
-    Point(int a, int b)
-    {
-        x = a;
-        y = b;
-    }
-
-    int x;
-    int y;
-};
-
-struct {
-    bool operator()(const Point &A, const Point &B)
-    {
-        if(A.y == B.y)
-            return A.x < B.x;
-        return A.y < B.y;
-    }
-} SortPointsByY;
+#include "Point.hpp"
 
 bool operator<(const Point &A, const Point &B)
 {
@@ -58,7 +39,7 @@ int main(int argc, char **argv)
         allPoints.push_back(Point(a, b));
     }
 
-    std::sort(allPoints.begin(), allPoints.end());
+    std::sort(allPoints.begin(), allPoints.end(), SortPointsByX);
 
     int Output = 0;
     int inside = 0;
