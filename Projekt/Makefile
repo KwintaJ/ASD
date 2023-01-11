@@ -28,12 +28,15 @@ sourcePB = ProstokatBrute
 sourceGen = Generator
 sourceTest = Tester
 
+# Headers
+headersP = Point IntervalTree Vector LinkedQueue 
+headersPB = Point 
+
 # Objects
-objectsP = $(addsuffix .o,$(sourceP))
-objectsPB = $(addsuffix .o,$(sourcePB))
+objectsP = $(addsuffix .o,$(sourceP)) $(addsuffix .hpp,$(headersP))
+objectsPB = $(addsuffix .o,$(sourcePB)) $(addsuffix .hpp,$(headersPB))
 objectsGen = $(addsuffix .o,$(sourceGen))
 objectsTest = $(addsuffix .o,$(sourceTest))
-
 
 #==============================================================================
 # ZALEZNOSCI (kompilacja):
