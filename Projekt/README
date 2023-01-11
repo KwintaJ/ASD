@@ -41,6 +41,11 @@ Katalog Projekt zawiera nastepujace podkatalogi i pliki:
 - ProstokatBrute.cpp    #   Plik zrodlowy programu wykorzystujacego brute-force
                         #   do generowania wzorcowych danych wyjściowych
 - Tester.cpp            #   Plik zrodlowy programu do testowania Prostokat.x
+                        #
+- Point.hpp             #   Pliki naglowkowe z implementacjami potrzebnych
+- IntervalTree.hpp      #   kontenerow i funkcji
+- Vector.hpp            #   
+- LinkedQueue.hpp       #
 ===============================================================================
 
 
