@@ -63,24 +63,25 @@ int main(int argc, char **argv)
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(NULL); std::cout.tie(NULL);
 
+    int NUM_OF_TESTS = 100;
+    if(argc > 1)
+        NUM_OF_TESTS = atoi(argv[1]);
+
+    std::cout << "Generating data..." << std::endl;
+
+
     time_t seed;
     srand(time(&seed));
-    
-    for(int i = 1; i < 10; i++)
-    {
-        std::string fileName = "./tests/in/" + std::to_string(i) + ".in";
-        writeTest(30, fileName);
-    }
 
-    for(int i = 10; i < 100; i++)
+    for(int i = 0; i < NUM_OF_TESTS; i++)
     {
         std::string fileName = "./tests/in/" + std::to_string(i) + ".in";
-        writeTest(3000, fileName);
-    }
 
-    for(int i = 100; i < 1000; i++)
-    {
-        std::string fileName = "./tests/in/" + std::to_string(i) + ".in";
-        writeTest(30000, fileName);
+        if(i < 10)
+            writeTest(30, fileName);
+        else if(i < 100)
+            writeTest(3000, fileName);
+        else
+            writeTest(30000, fileName);
     }
 }
