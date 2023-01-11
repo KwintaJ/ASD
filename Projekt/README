@@ -42,8 +42,9 @@ Katalog Projekt zawiera nastepujace podkatalogi i pliki:
                         #   do generowania wzorcowych danych wyjściowych
 - Tester.cpp            #   Plik zrodlowy programu do testowania Prostokat.x
                         #
-- Point.hpp             #   Pliki naglowkowe z implementacjami potrzebnych
-- IntervalTree.hpp      #   kontenerow i funkcji
+- Functions.hpp         #   Pliki naglowkowe z implementacjami potrzebnych
+- Point.hpp             #   kontenerow i funkcji
+- IntervalTree.hpp      #   
 - Vector.hpp            #   
 - LinkedQueue.hpp       #
 ===============================================================================

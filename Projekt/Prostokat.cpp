@@ -11,8 +11,8 @@
 //############################################//
 
 #include <iostream>
-#include <algorithm>
 
+#include "Functions.hpp"      // funkcje maxOf() i sortContainer()
 #include "Point.hpp"          // struktura reprezentujaca punkt na plaszczyznie
 #include "IntervalTree.hpp"   // funkcje drzewa przedzialowego
 #include "Vector.hpp"         // wektor
@@ -26,9 +26,6 @@ struct Range
     int left = -30001;
     int right = 30001;
 };
-
-/* funkcja zwracajaca wieksza z dwoch liczb calkowitych */
-int maxOf(const int &A, const int &B);
 
 /* wyszukanie punktu o danej wspolrzednej y z tablicy wszystkich punktow 
    posortowanej po wspolrzednych y; funkcja zwraca indeks w tablicy; O(log n) */
@@ -49,17 +46,14 @@ int main(int argc, char **argv)
 
     /* input */
     int w, h, n;
+    Vector<Point> allPoints;
+
     std::cin >> w >> h >> n;
-
-    Vector<Point> allPointsSortedByX;
-    Vector<Point> allPointsSortedByY;
-
     for(int i = 0; i < n; i++)
     {
         int a, b;
         std::cin >> a >> b;
-        allPointsSortedByX.push_back(Point(a, b));
-        allPointsSortedByY.push_back(Point(a, b));
+        allPoints.push_back(Point(a, b));
     }
 
     /* drzewo przedzialowe max() */
@@ -70,9 +64,8 @@ int main(int argc, char **argv)
     int Output = 0;
 
     /* sortowanie punktow */
-    std::sort(allPointsSortedByX.begin(), allPointsSortedByX.end(), SortPointsByX);
-    std::sort(allPointsSortedByY.begin(), allPointsSortedByY.end(), SortPointsByY);
-
+    Vector<Point> allPointsSortedByX = sortContainer(allPoints, ComparePointsByX);
+    Vector<Point> allPointsSortedByY = sortContainer(allPoints, ComparePointsByY);
 
     Queue<Point, MAX_NUMBER_OF_POINTS> currentlyProcessed; // kolejka punktow aktualnie przetwarzanych
     int i = 0;
@@ -106,14 +99,6 @@ int main(int argc, char **argv)
     std::cout << Output << std::endl;
 }
 //#################################################################################################################################################################################
-
-
-int maxOf(const int &A, const int &B)
-{
-    if(A >= B)
-        return A;
-    return B;
-}
 
 int binsearch(Vector<Point> &allPointsByY, Point P, int BSleft, int BSright)
 {

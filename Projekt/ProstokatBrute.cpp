@@ -16,13 +16,6 @@
 
 #include "Point.hpp"
 
-bool operator<(const Point &A, const Point &B)
-{
-    if(A.x == B.x)
-        return A.y < B.y;
-    return A.x < B.x;
-}
-
 int main(int argc, char **argv)
 {
     std::ios_base::sync_with_stdio(false);
@@ -39,7 +32,7 @@ int main(int argc, char **argv)
         allPoints.push_back(Point(a, b));
     }
 
-    std::sort(allPoints.begin(), allPoints.end(), SortPointsByX);
+    std::sort(allPoints.begin(), allPoints.end(), ComparePointsByX);
 
     int Output = 0;
     int inside = 0;
@@ -48,7 +41,7 @@ int main(int argc, char **argv)
     {
         auto it = allPoints.begin() + i;
 
-        std::vector<Point> rightColumn(it, upper_bound(it, allPoints.end(), Point(it->x + w, 30001)));
+        std::vector<Point> rightColumn(it, upper_bound(it, allPoints.end(), Point(it->x + w, 30001), ComparePointsByX));
         auto it2 = it;
         while(it2 != allPoints.begin())
         {
@@ -58,9 +51,9 @@ int main(int argc, char **argv)
             rightColumn.push_back(*it2);
         }
 
-        sort(rightColumn.begin(), rightColumn.end(), SortPointsByY);
+        sort(rightColumn.begin(), rightColumn.end(), ComparePointsByY);
 
-        for(auto it3 = lower_bound(rightColumn.begin(), rightColumn.end(), Point(-30001, it->y - h), SortPointsByY);
+        for(auto it3 = lower_bound(rightColumn.begin(), rightColumn.end(), Point(-30001, it->y - h), ComparePointsByY);
         it3 != rightColumn.end(); it3++)
         {
             auto it4 = it3;

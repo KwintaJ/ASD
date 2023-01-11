@@ -33,41 +33,24 @@ struct Point
 };
 
 /* porownywanie dwoch punktow */
-bool LessByX(const Point &A, const Point &B)
+struct 
 {
-    if(A.x == B.x)
-        return A.y < B.y;
-    return A.x < B.x;
-}
-bool LessByY(const Point &A, const Point &B)
-{
-    if(A.x == B.x)
-        return A.y < B.y;
-    return A.x < B.x;
-}
-bool operator==(const Point &A, const Point &B)
-{
-    if(A.x == B.x && A.y == B.y)
-        return true;
-    return false;
-}
-
-struct {
     bool operator()(const Point &A, const Point &B)
     {
         if(A.x == B.x)
             return A.y < B.y;
         return A.x < B.x;
     }
-} SortPointsByX;
+} ComparePointsByX;
 
-struct {
+struct 
+{
     bool operator()(const Point &A, const Point &B)
     {
         if(A.y == B.y)
             return A.x < B.x;
         return A.y < B.y;
     }
-} SortPointsByY;
+} ComparePointsByY;
 
 #endif

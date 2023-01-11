@@ -20,15 +20,38 @@ template<class T>
 class Vector
 {
 public:
-    Vector()
+    Vector() // Konstruktor pustego wektora
     {
         array = new T[32];
         currentMaxSize = 32;
         currentSize = 0;
     }
 
+    Vector(const Vector& copiedVector) // Konstruktor kopiujacy
+    {
+        this->currentMaxSize = copiedVector.currentMaxSize;
+        this->array = new T[this->currentMaxSize];
+        for(this->currentSize = 0; this->currentSize < copiedVector.currentSize; this->currentSize++)
+        {
+            this->array[this->currentSize] = copiedVector.array[this->currentSize];
+        }
+    }
+
+    Vector& operator=(const Vector& copiedVector) // Operator kopiowania
+    {
+        delete[] array;
+        this->currentMaxSize = copiedVector.currentMaxSize;
+        T *temporaryArray = new T[this->currentMaxSize];
+        for(this->currentSize = 0; this->currentSize < copiedVector.currentSize; this->currentSize++)
+        {
+            temporaryArray[this->currentSize] = copiedVector.array[this->currentSize];
+        }
+        array = temporaryArray;
+        return *this;
+    }
+
     template<class U>
-    Vector(U &x, int initSize)
+    Vector(U &x, int initSize) // Kostruktor tworzacy initSize-elementowy wektor elementow x
     {
         currentMaxSize = initSize * 2;
         array = new T[currentMaxSize];
@@ -41,6 +64,15 @@ public:
     ~Vector() // Destruktor
     {
         delete[] array;
+    }
+
+    void clear()
+    {
+        delete[] array;
+        T *temporaryArray = new T[32];
+        array = temporaryArray;
+        currentMaxSize = 32;
+        currentSize = 0;
     }
     
     template<class U>
@@ -79,6 +111,11 @@ public:
     int size()
     {
         return currentSize;
+    }
+
+    bool empty()
+    {
+        return currentSize == 0;
     }
     
     typedef T* iterator;

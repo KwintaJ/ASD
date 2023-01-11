@@ -29,7 +29,7 @@ sourceGen = Generator
 sourceTest = Tester
 
 # Headers
-headersP = Point IntervalTree Vector LinkedQueue 
+headersP = Functions Point IntervalTree Vector LinkedQueue 
 headersPB = Point 
 
 # Objects
@@ -49,7 +49,7 @@ Generator.x: $(objectsGen)
 Tester.x: $(objectsTest)
 
 test: all
-	./Generator.x
+	#./Generator.x
 	./Tester.x
 
 %.o: %.cpp
