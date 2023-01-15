@@ -1,6 +1,6 @@
 //############################################//
 //                                            //
-//    Jan Kwinta                xx.xx.2023    //
+//    Jan Kwinta                15.01.2023    //
 //                                            //
 //                                            //
 //    Projekt: Prostokat                      //
@@ -21,6 +21,60 @@ int maxOf(const int &A, const int &B)
         return A;
     return B;
 }
+
+/* INDEX LOWER BOUND AND UPPER BOUND */
+template<class T, class Compare, class Container>
+int lowBound(Container &v, T P, Compare comp)
+{
+    int it, count, step;
+    count = v.size();
+    int first = 0;
+
+    while(count > 0)
+    {
+        it = first; 
+        step = count / 2; 
+        it += step;
+ 
+        if(comp(v[it], P))
+        {
+            it++;
+            first = it; 
+            count -= step + 1; 
+        }
+        else
+            count = step;
+    }
+ 
+    return first;
+}
+
+template<class T, class Compare, class Container>
+int upBound(Container &v, T P, Compare comp)
+{
+    int it, count, step;
+    count = v.size();
+    int first = 0;
+ 
+    while(count > 0)
+    {
+        it = first; 
+        step = count / 2; 
+        it += step;
+ 
+        if(!comp(P, v[it]))
+        {
+            it++;
+            first = it;
+            count -= step + 1;
+        } 
+        else
+            count = step;
+    }
+ 
+    return first;
+}
+
 
 /* MERGESORT */
 template<class Compare, class Container>

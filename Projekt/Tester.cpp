@@ -1,6 +1,6 @@
 //############################################//
 //                                            //
-//    Jan Kwinta                xx.xx.2023    //
+//    Jan Kwinta                15.01.2023    //
 //                                            //
 //                                            //
 //    Projekt: Prostokat                      //
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
     std::cin.tie(NULL); std::cout.tie(NULL);
 
     int choice = 0, NUM_OF_TESTS = 0;
-    std::cout << "Do you want to generate new test data?\n1. Yes\n2. No" << std::endl;
+    std::cout << "Czy chcesz wygenerowac nowe testy?\n1. Tak\n2. Nie" << std::endl;
     std::cin >> choice;
 
     if(choice != 1 && choice != 2)
@@ -27,13 +27,13 @@ int main(int argc, char **argv)
 
     if(choice == 1)
     {
-        std::cout << "How many tests do you want to generate?" << std::endl;
+        std::cout << "Ile testow chcesz wygenerowac?" << std::endl;
         std::cin >> NUM_OF_TESTS;
 
         if(system(("./Generator.x " + std::to_string(NUM_OF_TESTS)).c_str()))
             return 0;
 
-        std::cout << "Brute-forcing data..." << std::endl;
+        std::cout << "Brute-forcing..." << std::endl;
 
         for(int i = 0; i < NUM_OF_TESTS; i++)
         {
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
         }
     }
 
-    std::cout << "Ready for testing. Type How many tests do you want to run" << std::endl;
+    std::cout << "Gotowe do testowania. Ile testow chcesz uruchomic?" << std::endl;
     NUM_OF_TESTS = 0;
     std::cin >> NUM_OF_TESTS;
 
@@ -66,6 +66,6 @@ int main(int argc, char **argv)
         else
             std::cout << i << " OK" << std::endl;
     }
-            std::cout << "All tests passed" << std::endl;
+            std::cout << "Wszystkie testy zaliczone" << std::endl;
 
 }

@@ -1,13 +1,13 @@
 //############################################//
 //                                            //
-//    Jan Kwinta                xx.xx.2023    //
+//    Jan Kwinta                15.01.2023    //
 //                                            //
 //                                            //
 //    Projekt: Prostokat                      //
 //    Plik: Point.hpp                         //
 //                                            //
 //    Struktura reprezentujaca punkt          //
-//    na plaszczyznie i przydatne funkcje     //
+//    na plaszczyznie                         //
 //                                            //
 //############################################//
 

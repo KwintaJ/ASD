@@ -11,8 +11,8 @@
 //                                            //
 //############################################//
 
-#ifndef LLINKEDQUEUE
-#define LLINKEDQUEUE
+#ifndef LINKEDQUEUE
+#define LINKEDQUEUE
 
 #include <stdexcept>
 #include <iostream>

@@ -1,6 +1,6 @@
 //############################################//
 //                                            //
-//    Jan Kwinta                xx.xx.2023    //
+//    Jan Kwinta                15.01.2023    //
 //                                            //
 //                                            //
 //    Projekt: Prostokat                      //
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     if(argc > 1)
         NUM_OF_TESTS = atoi(argv[1]);
 
-    std::cout << "Generating data..." << std::endl;
+    std::cout << "Generowanie danych..." << std::endl;
 
 
     time_t seed;

@@ -1,6 +1,6 @@
 //############################################//
 //                                            //
-//    Jan Kwinta                xx.xx.2023    //
+//    Jan Kwinta                15.01.2023    //
 //                                            //
 //                                            //
 //    Projekt: Prostokat                      //
@@ -27,35 +27,35 @@ public:
         currentSize = 0;
     }
 
-    Vector(const Vector& copiedVector) // Konstruktor kopiujacy
+    Vector(const Vector& other) // Konstruktor kopiujacy
     {
-        this->currentMaxSize = copiedVector.currentMaxSize;
+        this->currentMaxSize = other.currentMaxSize;
         this->array = new T[this->currentMaxSize];
-        for(this->currentSize = 0; this->currentSize < copiedVector.currentSize; this->currentSize++)
+        for(this->currentSize = 0; this->currentSize < other.currentSize; this->currentSize++)
         {
-            this->array[this->currentSize] = copiedVector.array[this->currentSize];
+            this->array[this->currentSize] = other.array[this->currentSize];
         }
     }
 
-    Vector& operator=(const Vector& copiedVector) // Operator kopiowania
+    Vector& operator=(const Vector& other) // Operator kopiowania
     {
         delete[] array;
-        this->currentMaxSize = copiedVector.currentMaxSize;
+        this->currentMaxSize = other.currentMaxSize;
         T *temporaryArray = new T[this->currentMaxSize];
-        for(this->currentSize = 0; this->currentSize < copiedVector.currentSize; this->currentSize++)
+        for(this->currentSize = 0; this->currentSize < other.currentSize; this->currentSize++)
         {
-            temporaryArray[this->currentSize] = copiedVector.array[this->currentSize];
+            temporaryArray[this->currentSize] = other.array[this->currentSize];
         }
         array = temporaryArray;
         return *this;
     }
 
     template<class U>
-    Vector(U &x, int initSize) // Kostruktor tworzacy initSize-elementowy wektor elementow x
+    Vector(U &x, int k) // Kostruktor tworzacy k-elementowy wektor elementow x
     {
-        currentMaxSize = initSize * 2;
+        currentMaxSize = k * 2;
         array = new T[currentMaxSize];
-        for(currentSize = 0; currentSize < initSize; currentSize++)
+        for(currentSize = 0; currentSize < k; currentSize++)
         {
             array[currentSize] = std::forward<U>(x);
         }
