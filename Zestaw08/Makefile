@@ -33,7 +33,7 @@ objectsSet = $(addsuffix .o,$(sourceSet)) $(addsuffix .hpp,$(sourceSet))
 # ZALEZNOSCI (kompilacja):
 
 all: Set.x
-BinaryTree.x: $(objectsSet)
+Set.x: $(objectsSet)
 
 %.o: %.cpp
 	$(CO) $(CFLAGS) -c -o $@ $<
