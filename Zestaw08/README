@@ -1,0 +1,53 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 19.03.2023 #
+#  Zestaw08: Implementacja zbioru                                             #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Zestaw08 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji
+- Set.cpp               |   Plik zrodlowy programu
+- Set.hpp               |   Plik naglowkowy z implementacja klasy 
+_______________________________________________________________________________
+
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Set.hpp=--
+
+    Implementacja zbioru realizujaca nastepujace funkcje:
+    
+        insert(x)               // wstawia obiekt x do zbioru
+        isMember(x)             // sprawdza czy obiekt x jest elementem zbioru
+        remove(x)               // usuwa obiekt x ze zbioru
+        pop()                   // usuwa i zwraca jeden dowolny element
+        size()                  // zwraca rozmiar zbioru
+        intersection(S2)        // zwraca przecięcie z drugim zbiorem
+        difference(S2)          // zwraca różnicę z drugim zbiorem
+        setUnion(S2)            // zwraca sumę z drugim zbiorem
+
+--=Set.x=--
+
+    Program tesujacy zaimplementowane funkcje.
+    Program Set.x wczytuje ze standardowego wejscia dwie liczby: n, m.
+    Nastepnie tworzy dwa zbiory liczb caklkowitych i:
+        wczytuje n liczb ze standardowego wejscia i wstawia je do Zbioru1
+        wczytuje m liczb ze standardowego wejscia i wstawia je do Zbioru2
+        
+    Na tak utworzonych zbiorach wykonuje kolejo operacje:
+    
+        - sprawdza czy liczba 6 jest elementem Zbioru1
+        - jezeli tak, to usuwa liczbe 6 ze Zbioru1
+        - jeżeli Zbior2 jest niepusty to usuwa dowolny element ze Zbioru2
+          i wypisuje go
+        - wypisuje rozmiary obydwu zbiorow po tych operacjach
+        - Tworzy i wypisuje elementy zbiorow I, D, U, ktore sa odpowiednio
+          przecieciem, roznica i suma Zbioru1 ze Zbiorem2
+        
+    
+_______________________________________________________________________________
