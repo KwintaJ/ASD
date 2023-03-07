@@ -1,0 +1,33 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 26.03.2023 #
+#  Zestaw09: Implementacja kolejki priorytetowej                              #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Zestaw09 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji
+- PriorityQueue.cpp     |   Plik zrodlowy programu
+- PriorityQueue.hpp     |   Plik naglowkowy z implementacja klasy 
+_______________________________________________________________________________
+
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=PriorityQueue.hpp=--
+
+    Implementacja kolejki priorytetowej realizujaca nastepujace funkcje:
+    
+        
+
+--=PriorityQueue.x=--
+
+    Program tesujacy zaimplementowane funkcje.
+    
+        
+    
+_______________________________________________________________________________
