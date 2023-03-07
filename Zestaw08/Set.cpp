@@ -29,12 +29,12 @@ int main(int argc, char **argv)
     while(n--)
     {
         std::cin >> element;
-        Zbior1.insert(element); // wlozenie elementu do drzewa
+        Zbior1.insert(element);
     }
     while(m--)
     {
         std::cin >> element;
-        Zbior2.insert(element); // wlozenie elementu do drzewa
+        Zbior2.insert(element);
     }
 
     /* ------ wyjscie ------ */
