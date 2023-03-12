@@ -5,6 +5,7 @@ Jan Kwinta
 ----------
   
 
+**Zestaw00**" Wektor  
 **Zestaw01**: Stos  
 **Zestaw02**: Kolejka  
 **Zestaw03**: Lista I  
