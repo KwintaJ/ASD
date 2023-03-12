@@ -1,0 +1,56 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 24.05.2022 #
+#  Zestaw00: Implementacja wektora                                            #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Zestaw00 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji
+- Vector.cpp            |   Plik zrodlowy programu
+- Vector.hpp            |   Plik naglowkowy z implementacja klasy 
+- Functions.hpp         |   Plik naglowkowy z przydatnymi funkcjami
+_______________________________________________________________________________
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Vector.hpp=--
+
+    Implementacja wektora realizujaca nastepujace funkcje:
+    
+        clear()
+        push_back(x)
+        pop_back()
+        size()
+        empty()
+
+    Oraz pozwala na bezpośredni dostęp do elementów przez
+
+        &operator[](int)
+        iterator
+
+
+--=Functions.hpp=--
+
+    Realizacja następujących funkcji szablonowych:
+
+        lowBound()
+        upBoung()
+        sortContainer()
+
+
+
+--=Vector.x=--
+
+    Program tesujacy zaimplementowane funkcje.
+    Program Vector.x wczytuje ze standardowego wejscia liczbe n.
+    Nastepnie tworzy wektor i wczytuje n liczb ze standardowego wejscia 
+    i wstawia je do Wektora. Sortuje wczytany wektor nierosnaco. Jeżeli wektor
+    jest niepusty to usuwa liczbę z jego końca (pop_back) i wypisuje zawartość 
+    wektora na standardowe wyjście.
+    
+_______________________________________________________________________________
