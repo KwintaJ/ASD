@@ -1,0 +1,33 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 28.03.2023 #
+#  Zestaw09: Implementacja grafu                                              #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Zestaw10 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji
+- Graph.cpp             |   Plik zrodlowy programu
+- Graph.hpp             |   Plik naglowkowy z implementacja klasy 
+_______________________________________________________________________________
+
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Graph.hpp=--
+
+    Implementacja grafu realizujaca nastepujace funkcje:
+    
+        
+
+--=Graph.x=--
+
+    Program tesujacy zaimplementowane funkcje.
+    
+        
+    
+_______________________________________________________________________________
