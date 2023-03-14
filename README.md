@@ -15,3 +15,4 @@ Jan Kwinta
 **Zestaw07**: Słownik  
 **Zestaw08**: Zbiór  
 **Zestaw09**: Kolejka priorytetowa  
+**Zestaw10**: Graf  
