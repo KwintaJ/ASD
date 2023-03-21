@@ -38,8 +38,9 @@ int main(int argc, char **argv)
     }
 
     /* ------ wyjscie ------ */
-    
+    std::cout << "Zbior1: ";
     Zbior1.printSet();
+    std::cout << "Zbior2: ";
     Zbior2.printSet();
     
     
@@ -62,9 +63,23 @@ int main(int argc, char **argv)
         
         
     std::cout << "Rozmiary obydwu zbiorow: Zbior1 - " << Zbior1.size();
-    std::cout << ", Zbior2 - " << Zbior2.size() << std::endl;
+    std::cout << ", Zbior2 - " << Zbior2.size() << std::endl << std::endl;
+
+    std::cout << "Zbior1: ";
+    Zbior1.printSet();
+    std::cout << "Zbior2: ";
+    Zbior2.printSet();
     
+
+    std::cout << "Przeciecie: ";
     Set<int> I = Zbior1.intersection(Zbior2);
+    I.printSet();
+
+    std::cout << "Roznica: ";
     Set<int> D = Zbior1.difference(Zbior2);
-    Set<int> U = Zbior1.setUnion(Zbior2);
+    D.printSet();
+
+    std::cout << "Suma: ";
+    Set<int> U = Zbior1._union(Zbior2);
+    U.printSet();
 }
