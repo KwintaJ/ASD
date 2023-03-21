@@ -22,12 +22,20 @@ _______________________________________________________________________________
 
     Implementacja kolejki priorytetowej realizujaca nastepujace funkcje:
     
+        void insert(x, k)       // wstawia obiekt x do kolejki i przypisuje mu priorytet k
+        QueueElem max()         // zwraca obiekt o największym priorytecie w kolejce nie usuwając go
+        QueueElem extractMax()  // usuwa z kolejki i zwraca obiekt o największym priorytecie
+        
+
+        gdzie QueueElem to struktura zawierająca dwa pola:
+
+        int priority
+        T obj                   // obiekt przechowywany z danym priorytetem
+    
         
 
 --=PriorityQueue.x=--
 
     Program tesujacy zaimplementowane funkcje.
-    
-        
     
 _______________________________________________________________________________

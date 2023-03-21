@@ -29,10 +29,15 @@ int main(int argc, char **argv)
     int priority;
     while(n--)
     {
-        std::cin >> element >> priority;
-        KolejkaPriorytetowa.insert(element, priority);
+        std::cin >> priority >> element;
+        KolejkaPriorytetowa.insert(priority, element);
     }
 
     /* ------ wyjscie ------ */
-    
+    while(!KolejkaPriorytetowa.empty())
+    {
+        KolejkaPriorytetowa.printQueue();
+        KolejkaPriorytetowa.extractMax();
+    } 
 }
+
