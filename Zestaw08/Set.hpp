@@ -91,16 +91,6 @@ public:
         setSize++;
     }
     
-    bool isMember(T x)
-    {
-        for(int i = 0; i < setSize; i++)
-        {
-            if(array[i] == x)
-                return true;
-        }
-        return false;
-    }
-    
     void remove(T x)
     {
         if(!isMember(x))
@@ -126,6 +116,12 @@ public:
                 break;  
             std::swap(temp, array[i]); 
         }
+    }
+
+    bool isMember(T x)
+    {
+        int probIndex = binsearchIndex(x);
+        return array[probIndex] == x;
     }
     
     T pop()
@@ -329,18 +325,6 @@ private:
         }
      
         return first;
-    }
-
-    void resizeDown(T *arr, int &m)
-    {
-        T *tempArray = new T[m / 2];
-            
-        for(int i = 0; i < setSize; i++)
-            tempArray[i] = arr[i];
-           
-        delete[] arr;
-        m /= 2;
-        arr = tempArray;
     }
 
     int setSize;
