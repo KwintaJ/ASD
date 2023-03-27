@@ -36,7 +36,10 @@ int main(int argc, char **argv)
     /* ------ wyjscie ------ */
     while(!KolejkaPriorytetowa.empty())
     {
+        std::cerr << "Items in queue:";
         KolejkaPriorytetowa.printQueue();
+        std::cerr << "Max element: " << KolejkaPriorytetowa.max() << std::endl;
+        
         KolejkaPriorytetowa.extractMax();
     } 
 }
