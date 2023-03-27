@@ -31,7 +31,7 @@ public:
         QueueElem(int p, U&& x)
         {
             priority = p;
-            obj = x;
+            obj = std:forward<U>(x);
         }
         
         int priority;
