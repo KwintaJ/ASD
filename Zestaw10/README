@@ -1,5 +1,5 @@
 ###############################################################################
-#  Autor: Jan Kwinta                                       Krakow, 28.03.2023 #
+#  Autor: Jan Kwinta                                       Krakow, 13.04.2023 #
 #  Zestaw09: Implementacja grafu                                              #
 ###############################################################################
 
@@ -19,15 +19,33 @@ _______________________________________________________________________________
 _______________________________________________________________________________
 
 --=Graph.hpp=--
-
     Implementacja grafu realizujaca nastepujace funkcje:
-    
+
+    Graph(numVert)              // inicjalizuje graf o numVert wierzchołkach
+
+    void      addEdge(i, j)     // dodaje krawędź pomiędzy wierzchołkami i i j
+    void      removeEdge(i, j)  // usuwa krawędź pomiędzy wierzchołkami i i j
+
+    bool      hasEdge(i, j)     // sprawdza czy krawędź pomiędzy wierzchołkami 
+                                   i i j istnieje
+
+    set<int>  inConnections(i)  // zwraca wszystkie wierzchołki od których 
+                                   istnieją połączenia do  wierzchołka i
+
+    set<int>  outConnections(i) // zwraca wszystkie wierzchołki do których prowadzą 
+                                   krawędzie wychodzące z i
+
+    set<int>  allConnections(i) // zwraca wszystkie wierzchołki które są 
+                                   połączone z i lub z którymi i jest połączony
+
+
+    Zaimplementowany jest takze algorytm BFS(v), ktory zwraca vector odleglosci 
+    (dlugosci najkrotszych sciezek) do wszystkich wierzcholkow z wierzcholka v.
+    Liczba -1 oznacza brak sciezki miedzy danym wierzcholkiem a v.
         
 
 --=Graph.x=--
-
     Program tesujacy zaimplementowane funkcje.
-    
-        
+            
     
 _______________________________________________________________________________
