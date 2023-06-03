@@ -16,3 +16,4 @@ Jan Kwinta
 **Zestaw08**: Zbiór  
 **Zestaw09**: Kolejka priorytetowa  
 **Zestaw10**: Graf  
+**Zestaw11**: Zadanie *Sejfy*  
