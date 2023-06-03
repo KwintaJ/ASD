@@ -1,0 +1,38 @@
+###############################################################################
+#  Autor: Jan Kwinta                                       Krakow, 03.06.2023 #
+#  Zestaw11: Zadanie Sejfy                                                    #
+###############################################################################
+
+* Zawartosc:
+_______________________________________________________________________________
+Katalog Zestaw11 zawiera nastepujace pliki:
+
+- README                |   Ten plik 
+- Makefile              |   Plik do kompilacji
+- Sejfy.cpp             |   Plik zrodlowy programu
+- LinkedQueue.hpp       |   Pliki naglowkowe z implementacjami 
+- Vector.hpp            |   struktur danych
+_______________________________________________________________________________
+
+
+
+* Opisy programow:
+_______________________________________________________________________________
+
+--=Sejfy.x=--
+    
+    Mamy n sejfów. Każdy z nich można otworzyć odpowiednim kluczem 
+    lub zniszczyć, żeby dostać się do zawartości. Klucze do tych 
+    sejfów znajdują się w tych samych sejfach - w każdym sejfie może być 1 
+    klucz, więcej, lub może ich nie być w ogóle. Do każdego sejfu pasuje 
+    tylko jeden klucz i wiemy, w którym sejfie znajduje się on znajduje.
+
+    Zadaniem jest napisanie programu, który zwróci informację jaka 
+    jest najmniejsza liczba sejfów, które trzeba zniszczyć żeby dostać 
+    się do zawartości wszystkich z nich.
+
+    Przykładowe wejście do programu może składać się z jedenej liczby n 
+    oznaczającej liczbę sejfów, oraz listy n liczb, w której i-ta liczba 
+    to indeks sejfu w którym znajduje się klucz do i-tego sejfu.
+_______________________________________________________________________________
+
