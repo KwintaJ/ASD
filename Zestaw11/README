@@ -10,6 +10,8 @@ Katalog Zestaw11 zawiera nastepujace pliki:
 - README                |   Ten plik 
 - Makefile              |   Plik do kompilacji
 - Sejfy.cpp             |   Plik zrodlowy programu
+- LinkedQueue.hpp       |   Pliki naglowkowe z implementacjami 
+- Vector.hpp            |   struktur danych
 _______________________________________________________________________________
 
 

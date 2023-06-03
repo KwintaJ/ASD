@@ -24,10 +24,10 @@ DIR = $(notdir $(CURDIR))
 
 # Programs
 sourceS = Sejfy
+headers = Vector LinkedQueue
 
 # Objects
-objectsS = $(addsuffix .o,$(sourceS))
-
+objectsS = $(addsuffix .o,$(sourceS)) $(addsuffix .hpp,$(headers))
 
 #==============================================================================
 # ZALEZNOSCI (kompilacja):
