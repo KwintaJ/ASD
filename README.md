@@ -1,10 +1,9 @@
 Algorytmy i Struktury Danych
 ============================
-
 Jan Kwinta
 ----------
-  
-
+Programy pisane w ramach laboratoriów z kursów *Algorytmy i Struktury Danych I* oraz *Algorytmy i Struktury Danych II* prowadzonych w roku 2022/2023 przez dr hab. Andrzeja Gorlicha i mgr inż. Bartłomieja Małkusa na Uniwersytecie Jagiellońskim w Krakowie
+----------
 **Zestaw00**: Wektor  
 **Zestaw01**: Stos  
 **Zestaw02**: Kolejka  
