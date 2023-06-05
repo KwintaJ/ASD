@@ -105,14 +105,8 @@ int main(int argc, char **argv)
     {
         if(!theBank[i].opened)
         {
-            std::cerr << "starting BFS on " << i << std::endl;
             if(crackOpenASafe(theBank, i))
-            {
-                std::cerr << "was a new crack" << std::endl;
                 crackedSafesCounter++;
-            }
-            else
-                std::cerr << "was not a new crack" << std::endl;
         }
     }
 
