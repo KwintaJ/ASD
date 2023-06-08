@@ -12,6 +12,13 @@ Katalog Zestaw11 zawiera nastepujace pliki:
 - Sejfy.cpp             |   Plik zrodlowy programu
 - LinkedQueue.hpp       |   Pliki naglowkowe z implementacjami 
 - Vector.hpp            |   struktur danych
+- tests                 |   Katalog z plikami zawierajacymi przykladowe
+  |                     |   wejscia do programu.
+  |- 1_23.txt           |
+  |- 2_3.txt            |   W nazwie pliku po "_" napisana jest spodziewana
+  |- 3_8.txt            |   odpowiedź do poszczególnych przykladow.
+  |- ...                |
+  |-8_5041.txt          |
 _______________________________________________________________________________
 
 
